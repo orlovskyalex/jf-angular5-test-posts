@@ -1,7 +1,7 @@
 <div class="posts-container">
-  <app-toolbar [(filter)]="filterValue"></app-toolbar>
+  <app-toolbar [(filter)]="filterValue" [(newPost)]="showNewPost"></app-toolbar>
 
-  <app-new-post></app-new-post>
+  <app-post-form [(show)]="showNewPost"></app-post-form>
 
   <ng-container *ngIf="(postList$ | async) as postList">
     <ng-container *ngFor="let post of filter(postList, filterValue); trackBy: trackByFn">

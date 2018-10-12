@@ -36,36 +36,33 @@ export class PostsService {
     this.newPostFormOpened$.next(!this.newPostFormOpened$.getValue());
   }
 
-  createPost(post: Partial<Post>): Observable<Post> {
+  savePost(post: Partial<Post>): Observable<Post> {
     // removing the fields we don't want to send
-    // (in case someone passed them for some reason)
     const { id, userId, ...data } = post;
 
-    const req = this.http.post(
-      this.baseUrl,
-      {
-        ...data,
-        userId: 1, // since we don't have any auth...
-      },
-    );
+    let observable: Observable<Post>;
 
-    return this.request<Post>(req)
-      .pipe(
-        tap(response => this.addPostToList(response)),
-      );
-  }
+    if (id) {
+      const req = this.http.patch(`${this.baseUrl}${id}`, data);
 
-  editPost(post: Post): Observable<Post> {
-    // removing the fields we don't want to send
-    // (in case someone passed them for some reason)
-    const { id, userId, ...data } = post;
-
-    const req = this.http.patch(`${this.baseUrl}${id}`, data);
-
-    return this.request<Post>(req)
-      .pipe(
+      observable = this.request<Post>(req).pipe(
         tap(response => this.updatePostInList(response)),
       );
+    } else {
+      const req = this.http.post(
+        this.baseUrl,
+        {
+          ...data,
+          userId: 1, // since we don't have any auth...
+        },
+      );
+
+      observable = this.request<Post>(req).pipe(
+        tap(response => this.addPostToList(response)),
+      );
+    }
+
+    return observable;
   }
 
   deletePost(id: number): Observable<any> {

@@ -13,7 +13,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   @Input() filter: string;
   @Output() filterChange = new EventEmitter<string>();
 
-  newPostOpened$ = this.posts.newPostFormOpened$;
+  @Input() newPost = false;
+  @Output() newPostChange = new EventEmitter<boolean>();
 
   private input$ = new Subject<string>();
   private destroyed$ = new Subject();
@@ -38,7 +39,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   }
 
   toggleNewPost() {
-    this.posts.toggleNewPostForm();
+    this.newPostChange.emit(!this.newPost);
   }
 
   ngOnDestroy() {

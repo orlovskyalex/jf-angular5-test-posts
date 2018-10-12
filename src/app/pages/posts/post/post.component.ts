@@ -13,9 +13,15 @@ export class PostComponent implements OnDestroy {
 
   @Input() post: Post;
 
+  editing = false;
+
   private destroyed$ = new Subject();
 
   constructor(private posts: PostsService) {
+  }
+
+  editPost() {
+    this.editing = true;
   }
 
   deletePost() {

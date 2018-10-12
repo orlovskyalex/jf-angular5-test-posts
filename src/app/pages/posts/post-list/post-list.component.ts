@@ -22,6 +22,7 @@ export class PostListComponent implements OnInit {
       return title.includes(filter) || body.includes(filter);
     });
   });
+  showNewPost = false;
 
   constructor(private posts: PostsService) {
   }

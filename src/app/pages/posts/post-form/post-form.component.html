@@ -1,0 +1,28 @@
+<div class="new-post" *ngIf="show">
+  <div class="form-group">
+    <label>
+      Title:
+      <input type="text" [(ngModel)]="currentPost.title">
+    </label>
+  </div>
+  <div class="form-group">
+    <label>
+      Body:
+      <textarea [(ngModel)]="currentPost.body"></textarea>
+    </label>
+  </div>
+
+  <div class="form-group">
+    <button type="button" (click)="save()">
+      <ng-container *ngIf="currentPost.id; else create">
+        {{ !saving ? 'Save' : 'Saving...' }}
+      </ng-container>
+      <ng-template #create>
+        {{ !saving ? 'Create' : 'Creating...' }}
+      </ng-template>
+    </button>
+    <button type="button" (click)="close()" [disabled]="saving">
+      Cancel
+    </button>
+  </div>
+</div>
