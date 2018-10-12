@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostsService } from '../../../shared/services/posts.service';
 
 @Component({
   selector: 'app-post-list',
@@ -7,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostListComponent implements OnInit {
 
-  constructor() {
+  postList$ = this.posts.list$;
+
+  constructor(private posts: PostsService) {
   }
 
   ngOnInit() {
+    this.posts.getPostList();
+  }
+
+  trackByFn(index, post) {
+    return post.id;
   }
 
 }

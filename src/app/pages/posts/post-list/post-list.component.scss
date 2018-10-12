@@ -1,0 +1,13 @@
+.posts-container {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.post-wrapper {
+  display: block;
+
+  & + .post-wrapper {
+    margin-top: 20px;
+  }
+}
