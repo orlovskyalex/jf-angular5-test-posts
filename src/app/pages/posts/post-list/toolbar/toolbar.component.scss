@@ -5,6 +5,17 @@
 
   input {
     flex: 1;
+    min-width: 0;
     padding: 8px 15px;
+  }
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 100px;
+
+  button {
+    margin-left: 20px;
   }
 }

@@ -1,0 +1,14 @@
+.new-post {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  & + .form-group {
+    margin-top: 10px;
+  }
+}
+
+input,
+textarea {
+  display: block;
+}

@@ -10,6 +10,7 @@ import { Post } from '../interfaces/post.interface';
 export class PostsService {
 
   list$ = new BehaviorSubject<Post[]>(null);
+  newPostFormOpened$ = new BehaviorSubject<boolean>(false);
 
   private baseUrl = 'posts/';
 
@@ -29,6 +30,10 @@ export class PostsService {
       .subscribe((response) => {
         this.list = response;
       });
+  }
+
+  toggleNewPostForm() {
+    this.newPostFormOpened$.next(!this.newPostFormOpened$.getValue());
   }
 
   createPost(post: Partial<Post>): Observable<Post> {

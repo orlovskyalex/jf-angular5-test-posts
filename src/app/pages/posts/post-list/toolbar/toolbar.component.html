@@ -1,3 +1,9 @@
 <div class="toolbar">
   <input type="text" [ngModel]="filter" (ngModelChange)="handleChange($event)" placeholder="Search">
+
+  <div class="btn-wrapper">
+    <button type="button" class="btn-create" (click)="toggleNewPost()">
+      {{ !(newPostOpened$ | async) ? 'New post' : 'Cancel' }}
+    </button>
+  </div>
 </div>

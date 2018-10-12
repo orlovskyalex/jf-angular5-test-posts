@@ -1,0 +1,19 @@
+<div class="new-post" *ngIf="(show$ | async)">
+  <div class="form-group">
+    <label>
+      Title:
+      <input type="text" [(ngModel)]="title">
+    </label>
+  </div>
+  <div class="form-group">
+    <label>
+      Body:
+      <textarea [(ngModel)]="body"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <button type="button" (click)="createPost()">
+      {{ !creating ? 'Create' : 'Creating...' }}
+    </button>
+  </div>
+</div>
